@@ -1,0 +1,65 @@
+#!/bin/sh
+#SBATCH --partition=valhalla --qos=valhalla
+#SBATCH --clusters=faculty
+#SBATCH --time=02:00:00
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=4
+#SBATCH --mem=5000
+###SBATCH --mail-user=alexeyak@buffalo.edu
+
+echo "SLURM_JOBID="$SLURM_JOBID
+echo "SLURM_JOB_NODELIST="$SLURM_JOB_NODELIST
+echo "SLURM_NNODES="$SLURM_NNODES
+echo "SLURMTMPDIR="$SLURMTMPDIR
+echo "working directory="$SLURM_SUBMIT_DIR
+
+NPROCS=`srun --nodes=${SLURM_NNODES} bash -c 'hostname' |wc -l`
+echo NPROCS=$NPROCS
+
+
+module load jupyter
+eval "$(/projects/academic/cyberwksp21/Software/Conda/Miniconda3/bin/conda shell.bash hook)"
+conda activate libra
+module load espresso/6.2.1
+export PWSCF=/util/academic/espresso/6.2.1/bin
+
+
+#The PMI library is necessary for srun
+export I_MPI_PMI_LIBRARY=/usr/lib64/libpmi.so
+
+env
+which python
+which pw.x
+which pw_export.x
+
+
+# These will be assigned automatically, leave them as they are
+param1=
+param2=
+
+# This is invocation of the scripts which will further handle NA-MD calclculations on the NAC calculation step
+# NOTE: minband - starting from 1
+#       maxband - is included
+
+python -c "from libra_py.workflows.nbra import step2
+params = {}
+params[\"EXE\"] = \"pw.x\" 
+params[\"EXE_EXPORT\"] = \"pw_export.x\"
+params[\"BATCH_SYSTEM\"] = \"srun\"
+params[\"NP\"] = 4
+params[\"start_indx\"] = $param1
+params[\"stop_indx\"] = $param2
+params[\"dt\"] = 41.33940
+params[\"prefix0\"] = \"x0.scf\" 
+params[\"nac_method\"] = 1
+params[\"minband\"] = 20
+params[\"maxband\"] = 39
+params[\"minband_soc\"] = 20
+params[\"maxband_soc\"] = 39
+params[\"compute_Hprime\"] = True
+params[\"wd\"] = \"wd\"
+params[\"rd\"] = \"/projects/academic/cyberwksp21/Instructors_material/alexeyak/qe/libra_qe/step2b/res\"
+params[\"verbosity\"] = 0
+step2.run(params)
+"
+
