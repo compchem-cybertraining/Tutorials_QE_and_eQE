@@ -1,0 +1,30 @@
+C2H4
+
+             Ground                       Excited             Gap
+Energy    -26.91816487 Ry               -26.48467937 Ry      0.4334869 Ry = 5.90 eV
+HOMO       -6.5809  eV                   -7.3810 eV
+LUMO       -0.8064  eV                   -1.3581 eV
+
+Gap        5.7745 eV                      6.0229 eV           Average = 5.8987 eV
+
+
+
+d.scf.out
+
+   -18.7389 -14.0101 -11.4377  -9.8266  -8.3686  -6.5754  -0.8028  -0.3551
+     0.4780   0.4829
+     highest occupied, lowest unoccupied level (ev):    -6.5754   -0.8028
+!    total energy              =     -26.91816487 Ry
+
+
+d1.scf.out
+
+   -19.7024 -14.3160 -11.9835 -10.4409  -8.7332  -7.3776  -1.3570  -0.5119
+     0.2955   0.3249
+     highest occupied, lowest unoccupied level (ev):    -1.3570   -0.5119
+!    total energy              =     -26.48467937 Ry
+
+
+
+
+

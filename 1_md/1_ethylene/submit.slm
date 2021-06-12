@@ -1,0 +1,27 @@
+#!/bin/sh
+#SBATCH --partition=valhalla --qos=valhalla
+#SBATCH --clusters=faculty
+#SBATCH --time=00:20:00
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=12
+#SBATCH --mem=1500
+#SBATCH --mail-user=alexeyak@buffalo.edu
+
+echo "SLURM_JOBID="$SLURM_JOBID
+echo "SLURM_JOB_NODELIST="$SLURM_JOB_NODELIST
+echo "SLURM_NNODES="$SLURM_NNODES
+echo "SLURMTMPDIR="$SLURMTMPDIR
+echo "working directory="$SLURM_SUBMIT_DIR
+
+
+module load qe
+
+NPROCS=`srun --nodes=${SLURM_NNODES} bash -c 'hostname' |wc -l`
+echo NPROCS=$NPROCS
+
+export I_MPI_PMI_LIBRARY=/usr/lib64/libmpi.so
+
+srun pw.x < x.md.in > x.md.out 
+
+
+
