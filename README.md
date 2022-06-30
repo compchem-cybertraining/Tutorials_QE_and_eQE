@@ -14,3 +14,8 @@ Tutorials on Quantum Espresso (QE) and embedded QE (eQE)
 * 4_normal_modes - is a demonstration of the normal modes calculations with QE
 
 * 5_interactive_qe - running QE from the Jupyter notebook
+
+* 6_nac_workflow - NAC calculations with QE
+
+* 7_eqe_nacs  -  example of how to use the `nonadiabatic` branch of eQE for computing time-overlaps
+

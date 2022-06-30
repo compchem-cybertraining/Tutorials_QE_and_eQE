@@ -1,0 +1,29 @@
+SLURM_JOBID=11163310
+SLURM_JOB_NODELIST=cpn-p27-15
+SLURM_NNODES=1
+SLURMTMPDIR=/scratch/11163310
+working directory=/projects/academic/cyberwksp21/Instructors_material/alexeyak/eqe/step2
+NPROCS=12
+ The MKL Libraries are in your library path. This is adequate for compiling and
+running most codes. Source $MKL/bin/mklvars.sh" for more features. 
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+     Program eQE v.0.2.0 starts on 30Jun2022 at 11: 8:34 
+
+     This program is based on the open-source Quantum ESPRESSO suite
+
+     Parallel version (MPI), running on    12 processors
+     R & G space division:  proc/nbgrp/npool/nimage =      12
+All Done!
+/var/spool/slurmd/job11163310/slurm_script: line 40: /user/alexeyak: Is a directory

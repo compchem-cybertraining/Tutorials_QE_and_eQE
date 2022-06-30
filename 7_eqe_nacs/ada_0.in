@@ -1,0 +1,80 @@
+ &control
+    calculation = 'md'
+    restart_mode='from_scratch',
+    prefix='ada',
+    pseudo_dir = './'
+    nstep = 100,
+    dt = 1,
+    nonadiabatic = .true.
+ /
+ &system
+    ibrav= 0,nat= 26, ntyp= 2,
+    nbnd = 30
+    ecutwfc = 60,
+    ecutrho = 250
+    smearing = 'gaussian'
+    degauss = 0.01
+    nosym = .true.
+    fde_kin_funct = 'revAPBEK'
+    fde_split_mix = .true.
+    fde_cell_split(1) = 1.0
+    fde_cell_split(2) = 1.0
+    fde_cell_split(3) = 1.0
+    fde_nba_beg = 28 !homo=28
+    fde_nba_end = 29 !lumo=29
+
+ /
+ &electrons
+    diagonalization='david'
+    mixing_mode = 'plain'
+    mixing_beta = 0.7
+    conv_thr =  1.0d-6
+    electron_maxstep = 500
+ /
+
+&ions
+    ion_dynamics = 'verlet'
+    ion_temperature = 'rescaling'
+    tempw = 300
+    tolp = 30
+/
+
+ATOMIC_SPECIES
+ H   1.00    h_pbe_v1.4.uspp.F.UPF
+ C   12.00   c_pbe_v1.2.uspp.F.UPF
+
+K_POINTS gamma
+
+CELL_PARAMETERS (angstrom)
+    15.00000    0.00000000    0.00000000
+     0.00000   15.00000000    0.00000000
+     0.00000    0.00000000   15.00000000
+
+ATOMIC_POSITIONS (angstrom)
+C         -0.58794        1.44872       -0.89277
+C          0.30353        0.55595        0.00000
+C         -0.58794       -0.33681        0.89277
+H          0.96020       -0.07881       -0.63477
+H          0.96020        1.19072        0.63477
+C         -1.48071        0.55595        1.78424
+C         -2.37348        1.44872        0.89277
+H         -2.11548       -0.07881        2.44091
+H         -0.84594        1.19072        2.44091
+C         -1.48071        2.34019        0.00000
+H         -2.11548        2.99686       -0.63477
+H         -0.84594        2.99686        0.63477
+C         -1.48071        0.55595       -1.78424
+H          0.05387        2.09053       -1.53458
+C         -1.48071       -1.22828        0.00000
+H          0.05387       -0.97862        1.53458
+C         -2.37348       -0.33681       -0.89277
+H         -0.84594       -1.88495       -0.63477
+H         -2.11548       -1.88495        0.63477
+H         -3.01529       -0.97862       -1.53458
+C         -3.26495        0.55595       -0.00000
+H         -2.11548        1.19072       -2.44091
+H         -0.84594       -0.07881       -2.44091
+H         -3.92162        1.19072       -0.63477
+H         -3.01529        2.09053        1.53458
+H         -3.92162       -0.07881        0.63477
+
