@@ -192,8 +192,10 @@ echo NPROCS=$NPROCS
 module load jupyter
 eval "$(/projects/academic/cyberwksp21/Software/Conda/Miniconda3/bin/conda shell.bash hook)"
 conda activate libra
-module load espresso/6.2.1
-export PWSCF=/util/academic/espresso/6.2.1/bin
+#module load espresso/6.2.1
+#export PWSCF=/util/academic/espresso/6.2.1/bin
+module load qe
+
 
 
 #The PMI library is necessary for srun
@@ -268,7 +270,7 @@ os.system("cp x0.exp.in wd")
 # In[7]:
 
 
-help(hpc_utils.distribute)
+#help(hpc_utils.distribute)
 
 
 # In[8]:

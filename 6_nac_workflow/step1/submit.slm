@@ -4,7 +4,7 @@
 #SBATCH --time=02:00:00
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=12
-#SBATCH --mem=1500
+#SBATCH --mem=15000
 #SBATCH --mail-user=alexeyak@buffalo.edu
 
 echo "SLURM_JOBID="$SLURM_JOBID
@@ -14,7 +14,8 @@ echo "SLURMTMPDIR="$SLURMTMPDIR
 echo "working directory="$SLURM_SUBMIT_DIR
 
 
-module load espresso
+#module load espresso
+module load qe   # this should be the 6.2.1 version
 
 NPROCS=`srun --nodes=${SLURM_NNODES} bash -c 'hostname' |wc -l`
 echo NPROCS=$NPROCS
